@@ -11,7 +11,7 @@
 #include <cusp/monitor.h>
 #include <cusp/array1d.h>
 #include <iostream>  
-#include <stdlib>	
+//#include <stdlib.h>	
 #include <vector> 
 
 #ifdef __cplusplus

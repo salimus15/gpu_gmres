@@ -18,16 +18,16 @@ int initialize_problem(CudaMatrix& mtx, const std::string& filename, CudaVector&
 	//cusp::array1d<ValueType, MemorySpace> b(A.num_rows);
 	
 	read_Operator_A_mm( mtx, filename);
-	std::cout << " Matrix read and has : " << mtx.num_rows << "rows " << mtx.cols << "cols " << mtx.num_entries << " entries " << endl;
+	std::cout << " Matrix read and has : " << mtx.num_rows << "rows " << mtx.cols << "cols " << mtx.num_entries << " entries \n";
 	// here we gonna set the vectors sizes
 	x.resize(mtx.num_rows);
 	b.resize(mtx.num_rows);	
 
 	// set initial guess
 	thrust::fill( x.begin(), x.end(), ValueType(1) );	
-	std::cout << " vector x set to size of : " << x.size << endl;
+	std::cout << " vector x set to size of : " << x.size << "\n";
 	thrust::fill( b.begin(), b.end(), ValueType(2) );
-	std::cout << " vector b set to size of : " << b.size << endl;
+	std::cout << " vector b set to size of : " << b.size << "\n";
 	// set stopping criteria:
 	//  iteration_limit    = 100
 	//  relative_tolerance = 1e-6
