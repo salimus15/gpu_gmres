@@ -10,7 +10,7 @@ int read_Operator_A_mm(CudaMatrix& mtx, const std::string& filename){
 
 
 //
-int initialize_problem(CudaMatrix& mtx, const std::string& filename, Vector& x, cusp::cusp::default_monitor& monitor, int& mGmres, int& tolerance){
+int initialize_problem(CudaMatrix& mtx, const std::string& filename, CudaVector& x, cusp::default_monitor& monitor, int& mGmres, int& tolerance){
 	//cusp::csr_matrix<int, double, cusp::device_memory> A;
 	// allocate storage for solution (x) and right hand side (b)
 	//cusp::array1d<ValueType, MemorySpace> x(A.num_rows, ValueType(1));
@@ -31,7 +31,7 @@ int initialize_problem(CudaMatrix& mtx, const std::string& filename, Vector& x, 
 }
 
 // calling the GMRES function implemented in CUSP
-int call_cusp_GMRES(CudaMatrix& A, CudaVector& x, CudaVector b, int restart, cusp::cusp::default_monitor& monitor){
+int call_cusp_GMRES(CudaMatrix& A, CudaVector& x, CudaVector b, int restart, cusp::default_monitor& monitor){
 	 // solve the linear system A * x = b with the GMRES
     cusp::krylov::gmres(A, x, b,restart, monitor);
 

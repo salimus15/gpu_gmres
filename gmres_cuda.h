@@ -17,13 +17,6 @@
 extern "C" {
 #endif
 
-
-// We define the type CudaMatrix which is in fact a csr_matrix class
-typedef struct cusp::csr_matrix CudaMatrix;
-
-// We define a CudaVector which is in fact an array1d class
-typedef struct cusp::array1d CudaVector;
-
 // where to perform the computation
 typedef cusp::device_memory MemorySpace;
 
@@ -32,17 +25,29 @@ typedef cusp::device_memory MemorySpace;
 // which floating point type to use
 typedef float ValueType;
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+typedef int IndexType;
+
+
+// We define the type CudaMatrix which is in fact a csr_matrix class
+typedef struct cusp::csr_matrix<IndexType, ValueType, MemorySpace> CudaMatrix;
+
+// We define a CudaVector which is in fact an array1d class
+typedef struct cusp::array1d<ValueType, MemorySpace> CudaVector;
+
+
+
+
 
 
 
 // reading a matrix from a matrix market file 
-int read_Operator_A_mm(CudaMatrix& mtx, const std::string& filename);
+int read_Operator_A_mm(CudaMatrix& mtx, const std::string & filename);
 
 //
-int initialize_problem(CudaMatrix& mtx, const std::string& filename, Vector& x, cusp::cusp::default_monitor& monitor, int& mGmres, int& tolerance);  
+int initialize_problem(CudaMatrix& mtx, const std::string& filename, CudaVector& x, cusp::default_monitor& monitor, int& mGmres, int& tolerance);  
 
 // calling the GMRES function implemented in CUSP
-int call_cusp_GMRES(CudaMatrix& A, CudaVector& x, CudaVector b, int restart, cusp::cusp::default_monitor& monitor);
+int call_cusp_GMRES(CudaMatrix& A, CudaVector& x, CudaVector b, int restart, cusp::default_monitor& monitor);
 
 
 
