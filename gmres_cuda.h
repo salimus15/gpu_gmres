@@ -47,7 +47,7 @@ int read_Operator_A_mm(CudaMatrix& mtx, const std::string & filename);
 int initialize_problem(CudaMatrix& mtx, const std::string& filename, CudaVector& b, CudaVector& x, int& mGmres, int& tolerance);  
 
 // calling the GMRES function implemented in CUSP
-int call_cusp_GMRES(CudaMatrix& A, CudaVector& x, CudaVector b, int restart, cusp::default_monitor<ValueType>& monitor);
+int call_cusp_GMRES(CudaMatrix& A, CudaVector& x, CudaVector b, int restart);
 
 
 

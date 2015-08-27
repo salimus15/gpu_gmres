@@ -3,8 +3,9 @@ extern "C" {
 
 // reading a matrix from a matrix market file 
 int read_Operator_A_mm(CudaMatrix& mtx, const std::string& filename){
-
-	cusp::io::read_matrix_market_file(mtx, filename);
+	std::cout << " Going to make read of the matrix \n";
+	cusp::io::read_matrix_market_file(mtx, "rdb968.mtx");
+	std::cout << " Matrix reading done \n";
 	return 0;
 }
 
@@ -17,8 +18,16 @@ int initialize_problem(CudaMatrix& mtx, const std::string& filename, CudaVector&
 	//cusp::array1d<ValueType, MemorySpace> b(A.num_rows);
 	
 	read_Operator_A_mm( mtx, filename);
+	std::cout << " Matrix read and has : " << mtx.num_rows << "rows " << mtx.cols << "cols " << mtx.num_entries << " entries " << endl;
+	// here we gonna set the vectors sizes
+	x.resize(mtx.num_rows);
+	b.resize(mtx.num_rows);	
+
 	// set initial guess
-   thrust::fill( x.begin(), x.end(), ValueType(1) );	
+	thrust::fill( x.begin(), x.end(), ValueType(1) );	
+	std::cout << " vector x set to size of : " << x.size << endl;
+	thrust::fill( b.begin(), b.end(), ValueType(2) );
+	std::cout << " vector b set to size of : " << b.size << endl;
 	// set stopping criteria:
 	//  iteration_limit    = 100
 	//  relative_tolerance = 1e-6
@@ -31,9 +40,10 @@ int initialize_problem(CudaMatrix& mtx, const std::string& filename, CudaVector&
 }
 
 // calling the GMRES function implemented in CUSP
-int call_cusp_GMRES(CudaMatrix& A, CudaVector& x, CudaVector b, int restart, cusp::default_monitor<ValueType>& monitor){
+int call_cusp_GMRES(CudaMatrix& A, CudaVector& x, CudaVector b, int restart){
 	 // solve the linear system A * x = b with the GMRES
-    cusp::krylov::gmres(A, x, b,restart, monitor);
+	 
+    cusp::krylov::gmres(A, x, b,restart);
 
 	return 0;
 }
@@ -76,8 +86,10 @@ int cusp_GMRES(int argc, char ** argv){
 	
 	//read_Operator_A_mm(mtx, filename);
 	initialize_problem(mtx, filename, b, x, mGmres, tolerance);
-	cusp::default_monitor<ValueType> monitor(b, mGmres, tolerance);
-	call_cusp_GMRES( mtx, x, b, mGmres, monitor);
+	std::cout << "problem initialization done !\n ";
+
+	call_cusp_GMRES( mtx, x, b, mGmres);
+	std::cout << " gmres solving done !!!\n";
 	return 0;
 }
 
