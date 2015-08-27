@@ -11,13 +11,12 @@ int read_Operator_A_mm(CudaMatrix& mtx, const std::string& filename){
 
 //
 int initialize_problem(CudaMatrix& mtx, const std::string& filename, CudaVector& b, CudaVector& x, cusp::default_monitor<ValueType>& monitor, int& mGmres, int& tolerance){
-int err;
 	//cusp::csr_matrix<int, double, cusp::device_memory> A;
 	// allocate storage for solution (x) and right hand side (b)
 	//cusp::array1d<ValueType, MemorySpace> x(A.num_rows, ValueType(1));
 	//cusp::array1d<ValueType, MemorySpace> b(A.num_rows);
 	
-	err =  read_Operator_A_mm( mtx, filename);
+	read_Operator_A_mm( mtx, filename);
 	// set initial guess
    thrust::fill( x.begin(), x.end(), ValueType(1) );	
 	// set stopping criteria:
@@ -46,7 +45,7 @@ int cusp_GMRES(int argc, char ** argv){
 	int i;
 	char * filename;
 	int tolerance, mGmres;
-	cusp::verbose_monitor<ValueType> monitor;
+	cusp::default_monitor<ValueType> monitor;
 	CudaMatrix mtx;
 	CudaVector x,b;
 
