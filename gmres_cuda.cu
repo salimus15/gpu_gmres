@@ -10,7 +10,7 @@ int read_Operator_A_mm(CudaMatrix& mtx, const std::string& filename){
 
 
 //
-int initialize_problem(CudaMatrix& mtx, const std::string& filename, CudaVector& b, CudaVector& x, cusp::default_monitor<ValueType>& monitor, int& mGmres, int& tolerance){
+int initialize_problem(CudaMatrix& mtx, const std::string& filename, CudaVector& b, CudaVector& x, int& mGmres, int& tolerance){
 	//cusp::csr_matrix<int, double, cusp::device_memory> A;
 	// allocate storage for solution (x) and right hand side (b)
 	//cusp::array1d<ValueType, MemorySpace> x(A.num_rows, ValueType(1));
@@ -26,7 +26,7 @@ int initialize_problem(CudaMatrix& mtx, const std::string& filename, CudaVector&
 	//	int restart = 50;
 	
 //	on initialise le moniteur de convergence
-	monitor(b, mGmres, tolerance);
+	
 	return 0;
 }
 
@@ -45,7 +45,7 @@ int cusp_GMRES(int argc, char ** argv){
 	int i;
 	char * filename;
 	int tolerance, mGmres;
-	cusp::default_monitor<ValueType> monitor;
+	
 	CudaMatrix mtx;
 	CudaVector x,b;
 
@@ -75,7 +75,8 @@ int cusp_GMRES(int argc, char ** argv){
 	}
 	
 	read_Operator_A_mm(mtx, filename);
-	initialize_problem(mtx, filename, b, x, monitor, mGmres, tolerance);
+	initialize_problem(mtx, filename, b, x, mGmres, tolerance);
+	cusp::default_monitor<ValueType> monitor(b, mGmres, tolerance);
 	call_cusp_GMRES( mtx, x, b, mGmres, monitor);
 	return 0;
 }
