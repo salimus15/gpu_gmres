@@ -1,5 +1,5 @@
 #include "gmres_cuda.h"
-
+extern "C" {
 
 // reading a matrix from a matrix market file 
 int read_Operator_A_mm(CudaMatrix& mtx, const std::string& filename){
@@ -43,13 +43,13 @@ int call_cusp_GMRES(CudaMatrix& A, CudaVector& x, CudaVector b, int restart, cus
 //
 int cusp_GMRES(int argc, char ** argv){
 	int i;
-	char * filename;
+	std::string filename;
 	int tolerance, mGmres;
 	
 	CudaMatrix mtx;
 	CudaVector x,b;
 
-	if(argc < 10){
+	if(argc > 10){
 		printf("\nje sais pas trop !!!!");
 		return 1;
 	}
@@ -58,7 +58,7 @@ int cusp_GMRES(int argc, char ** argv){
 		// we check if the matrix is contained in a matrix market file 
 		if (strcmp(argv[i], " --matrix-from-file") == 0){
 			// we get the name of the file from where to get the matrix 
-			filename = argv[i+1];
+			filename.assign("./rdb968.mtx");
 		}
 	
 		// we check if tolerance was specified 
@@ -74,10 +74,11 @@ int cusp_GMRES(int argc, char ** argv){
 		}
 	}
 	
-	read_Operator_A_mm(mtx, filename);
+	//read_Operator_A_mm(mtx, filename);
 	initialize_problem(mtx, filename, b, x, mGmres, tolerance);
 	cusp::default_monitor<ValueType> monitor(b, mGmres, tolerance);
 	call_cusp_GMRES( mtx, x, b, mGmres, monitor);
 	return 0;
 }
 
+}// for the extern 
