@@ -87,7 +87,10 @@ int cusp_GMRES(int argc, char ** argv){
 	//read_Operator_A_mm(mtx, filename);
 	initialize_problem(mtx, filename, b, x, mGmres, tolerance);
 	std::cout << "problem initialization done !\n ";
-
+	std::cout << " now follow the data states before callin gmres :\n";
+	std::cout << " Matrix read and has : " << mtx.num_rows << "rows " << mtx.num_cols << "cols " << mtx.num_entries << " entries \n";
+	std::cout << " vector x set to size of : " << x.size() << "\n";
+	std::cout << " vector b set to size of : " << b.size() << "\n";
 	call_cusp_GMRES( mtx, x, b, mGmres);
 	std::cout << " gmres solving done !!!\n";
 	return 0;
