@@ -46,8 +46,9 @@ int cusp_GMRES(int argc, char ** argv){
 	int i;
 	char * filename;
 	int tolerance, mGmres;
-
-	
+	cusp::verbose_monitor<ValueType> monitor;
+	CudaMatrix mtx;
+	CudaVector x,b;
 
 	if(argc < 10){
 		printf("\nje sais pas trop !!!!");
@@ -74,6 +75,9 @@ int cusp_GMRES(int argc, char ** argv){
 		}
 	}
 	
+	read_Operator_A_mm(mtx, filename);
+	initialize_problem(mtx, filename, b, x, monitor, mGmres, tolerance);
+	call_cusp_GMRES( mtx, x, b, mGmres, monitor);
 	return 0;
 }
 
