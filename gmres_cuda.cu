@@ -91,7 +91,7 @@ int cusp_GMRES(int argc, char ** argv){
 	std::cout << " Matrix read and has : " << mtx.num_rows << "rows " << mtx.num_cols << "cols " << mtx.num_entries << " entries \n";
 	std::cout << " vector x set to size of : " << x.size() << "\n";
 	std::cout << " vector b set to size of : " << b.size() << "\n";
-	cusp::verbose_monitor<ValueType> monitor(b, 100, 1e-6);
+	cusp::default_monitor<ValueType> monitor(b, 100, 1e-6);
 //	call_cusp_GMRES( mtx, x, b, mGmres);
 	my_GMRES( mtx, x, b, mGmres, monitor );
 	std::cout << " gmres solving done !!!\n";
@@ -102,7 +102,7 @@ int cusp_GMRES(int argc, char ** argv){
 // cusp gmres modified. it runs on one gpu 
 // coming a version running on multiple gpu(s) i guess
 
-int my_GMRES(CudaMatrix& A, CudaVector& x,  CudaVector& b, int restart, Monitor& monitor)
+int my_GMRES(CudaMatrix& A, CudaVector& x,  CudaVector& b, int restart, cusp::default_monitor<ValueType>& monitor)
 //	       Preconditioner& M)
 {
 //      typedef typename LinearOperator::value_type   ValueType;

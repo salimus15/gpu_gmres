@@ -55,7 +55,7 @@ int call_cusp_GMRES(CudaMatrix& A, CudaVector& x, CudaVector b, int restart);
 //
 int cusp_GMRES(int argc, char ** argv);
 
-int my_GMRES(CudaMatrix& A, CudaVector& x, CudaVector& b, int restart, Monitor& monitor);
+int my_GMRES(CudaMatrix& A, CudaVector& x, CudaVector& b, int restart, cusp::default_monitor<ValueType>& monitor);
 //	       Preconditioner& M)
 
 #ifdef __cplusplus
