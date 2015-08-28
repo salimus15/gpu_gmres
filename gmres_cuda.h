@@ -55,13 +55,10 @@ int initialize_problem(CudaMatrix& mtx, const std::string& filename, CudaVector&
 // calling the GMRES function implemented in CUSP
 int call_cusp_GMRES(CudaMatrix& A, CudaVector& x, CudaVector b, int restart);
 
-
-
 //
 int cusp_GMRES(int argc, char ** argv);
 
-int my_GMRES(CudaMatrix& A, CudaVector& x, CudaVector& b, int restart, cusp::default_monitor<ValueType>& monitor);
-//	       Preconditioner& M)
+
 
 #ifdef __cplusplus
 }
