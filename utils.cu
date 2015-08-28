@@ -29,7 +29,7 @@ void genererrotaionplan(ValueType& dx, ValueType& dy, ValueType& cs, ValueType& 
 
 //    template <class LinearOperator,typename ValueType> 
 //    void applyrotationplan(cusp::csr_matrix<int, ValueType, MemorySpace>& H, ValueType& cs, ValueType& sn, ValueType& s, int i)
-void applyrotationplan(cusp::array2d<ValueType, LocalSpace, cusp::column_major>& H, ValueType& cs, ValueType& sn, ValueType& s, int i)
+void applyrotationplan(cusp::array2d<ValueType, LocalSpace, cusp::column_major>& H, CuspArray& cs, CuspArray& sn, CuspArray& s, int i)
     {
       for (int k = 0; k < i; k++){
 			rotationplan(H(k,i), H(k+1,i), cs[k], sn[k]);

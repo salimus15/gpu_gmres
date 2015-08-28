@@ -29,7 +29,7 @@ void rotationplan(ValueType& dx, ValueType& dy, ValueType& cs, ValueType& sn);
 
 void genererrotaionplan(ValueType& dx, ValueType& dy, ValueType& cs, ValueType& sn);
 
-void applyrotationplan(cusp::array2d<ValueType, LocalSpace, cusp::column_major>& H, ValueType& cs, ValueType& sn, ValueType& s, int i);
+void applyrotationplan(cusp::array2d<ValueType, LocalSpace, cusp::column_major>& H, CuspArray& cs, CuspArray& sn, CuspArray& s, int i);
 
 
 #ifdef __cplusplus
