@@ -45,7 +45,7 @@ void applyrotationplan(cusp::array2d<ValueType, LocalSpace, cusp::column_major>&
 // cusp gmres modified. it runs on one gpu 
 // coming a version running on multiple gpu(s) i guess
 
-int my_GMRES(CudaMatrix& A, CudaVector& x,  CudaVector& b, int restart, cusp::default_monitor<ValueType>& monitor)
+int my_GMRES(cusp::csr_matrix<IndexType, ValueType, MemorySpace>& A, CudaVector& x,  CudaVector& b, int restart, cusp::default_monitor<ValueType>& monitor)
 //	       Preconditioner& M)
 {
   //    typedef typename LinearOperator::value_type   ValueType;

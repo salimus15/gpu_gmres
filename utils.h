@@ -31,7 +31,7 @@ void genererrotaionplan(ValueType& dx, ValueType& dy, ValueType& cs, ValueType& 
 
 void applyrotationplan(cusp::array2d<ValueType, LocalSpace, cusp::column_major>& H, CuspArray& cs, CuspArray& sn, CuspArray& s, int i);
 
-int my_GMRES(CudaMatrix& A, CudaVector& x, CudaVector& b, int restart, cusp::default_monitor<ValueType>& monitor);
+int my_GMRES(cusp::csr_matrix<IndexType, ValueType, MemorySpace>& A, CudaVector& x, CudaVector& b, int restart, cusp::default_monitor<ValueType>& monitor);
 //	       Preconditioner& M)
 
 #ifdef __cplusplus
