@@ -105,8 +105,8 @@ int cusp_GMRES(int argc, char ** argv){
 int my_GMRES(CudaMatrix& A, CudaVector& x,  CudaVector& b, int restart, cusp::default_monitor<ValueType>& monitor)
 //	       Preconditioner& M)
 {
-      typedef typename LinearOperator::value_type   ValueType;
-      typedef typename LinearOperator::memory_space MemorySpace;
+  //    typedef typename LinearOperator::value_type   ValueType;
+  //    typedef typename LinearOperator::memory_space MemorySpace;
  //     typedef typename norm_type<ValueType>::type NormType;
       // here we check that it's a squar matrix
       assert(A.num_rows == A.num_cols);        // sanity check
@@ -124,8 +124,8 @@ int my_GMRES(CudaMatrix& A, CudaVector& x,  CudaVector& b, int restart, cusp::de
       cusp::array1d<ValueType,MemorySpace> w(N);
 //           std::cout << "3bis\n";
       cusp::array1d<ValueType,MemorySpace> V0(N); //Arnoldi matrix pos 0
-//               std::cout << "3bisbis\n";
-      cusp::array2d<ValueType,MemorySpace,cusp::column_major> V(N,R+1,ValueType(0.0)); //Arnoldi matrix
+/              std::cout << "3bisbis " << N << "  " << R;
+      cusp::array2d<ValueType,cusp::device_memory,cusp::column_major> V(N,R+1,ValueType(0.0)); //Arnoldi matrix
       
  		     std::cout << "4444\n";
       //duplicate copy of s on GPU
