@@ -122,10 +122,12 @@ int my_GMRES(CudaMatrix& A, CudaVector& x,  CudaVector& b, int restart, cusp::de
       std::cout << " 3333\n ";
       //allocate workspace
       cusp::array1d<ValueType,MemorySpace> w(N);
+           std::cout << "3bis\n";
       cusp::array1d<ValueType,MemorySpace> V0(N); //Arnoldi matrix pos 0
+               std::cout << "3bisbis\n";
       cusp::array2d<ValueType,MemorySpace,cusp::column_major> V(N,R+1,ValueType(0.0)); //Arnoldi matrix
       
-      std::cout << "4444\n";
+ 		     std::cout << "4444\n";
       //duplicate copy of s on GPU
       cusp::array1d<ValueType,MemorySpace> sDev(R+1);
       std::cout << " 5555 \n";
