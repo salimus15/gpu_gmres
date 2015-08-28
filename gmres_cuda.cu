@@ -131,7 +131,7 @@ int my_GMRES(CudaMatrix& A, CudaVector& x,  CudaVector& b, int restart, cusp::de
       ValueType b_norm = blas::nrm2(b);
       
       do{
-      	std::cout "on entre dans la boucle principale \n";
+      	std::cout << "on entre dans la boucle principale \n";
 			// compute initial residual and its norm //
 			cusp::multiply(A, x, w);                     // V(0) = A*x        //
 			blas::axpy(b,w,ValueType(-1));               // V(0) = V(0) - b   //
@@ -145,14 +145,14 @@ int my_GMRES(CudaMatrix& A, CudaVector& x,  CudaVector& b, int restart, cusp::de
 		//	  cusp::multiply(M,b,V0);
 			  resid0 = blas::nrm2(V0)/b_norm;
 			}
-			std::cout "premier test reussi \n";
+			std::cout << "premier test reussi \n";
 			//s = 0 //
 			blas::fill(s,ValueType(0.0));
 			s[0] = beta;
 			i = -1;
 	
 			do{
-				std::cout "on entre dans la seconde boucle do \n";
+				std::cout << "on entre dans la seconde boucle do \n";
 			  ++i;
 			  ++monitor;
 			  
@@ -168,14 +168,14 @@ int my_GMRES(CudaMatrix& A, CudaVector& x,  CudaVector& b, int restart, cusp::de
 				 // V(i+1) -= H(k, i) * V(k)  //
 				 blas::axpy(V.column(k),w,-H(k,i));
 			  }
-			  std::cout "on sort d'une troisieme boucle\n"; 
+			  std::cout <<  "on sort d'une troisieme boucle\n"; 
 			  H(i+1,i) = blas::nrm2(w);   
 			  // V(i+1) = V(i+1) / H(i+1, i) //
 			  blas::scal(w,ValueType(1.0)/H(i+1,i));
 			  blas::copy(w,V.column(i+1));
-			  std::cout " avant la fameuse rotation \n";
+			  std::cout << " avant la fameuse rotation \n";
 			  applyrotationplan(H,cs,sn,s,i);
-			  std::cout " apres la fameuse rotation \n";
+			  std::cout << " apres la fameuse rotation \n";
 			  rel_resid[0] = abs(s[i+1]) / resid0 + monitor.absolute_tolerance();
 			  
 			  //check convergence condition
@@ -184,7 +184,7 @@ int my_GMRES(CudaMatrix& A, CudaVector& x,  CudaVector& b, int restart, cusp::de
 				 break;
 			  }
 			}while (i+1 < R && monitor.iteration_count()+1 <= monitor.iteration_limit());
-			std::cout " on sort de la seconde boucle \n ";	
+			std::cout << " on sort de la seconde boucle \n ";	
 
 			// solve upper triangular system in place //
 			for (j = i; j >= 0; j--){
@@ -194,7 +194,7 @@ int my_GMRES(CudaMatrix& A, CudaVector& x,  CudaVector& b, int restart, cusp::de
 				 s[k] -= H(k,j) * s[j];
 			  }
 			}
-			std::cout "on sort d'une quatrieme boucle \n";
+			std::cout << "on sort d'une quatrieme boucle \n";
 			// update the solution //
 	
 			//copy s to gpu 
@@ -204,7 +204,7 @@ int my_GMRES(CudaMatrix& A, CudaVector& x,  CudaVector& b, int restart, cusp::de
 			  // x = x + s[j] * V(j) //
 			  blas::axpy(V.column(j),x,s[j]);
 			}
-			std::cout " on sort d'une cinquieme boucle \n";
+			std::cout << " on sort d'une cinquieme boucle \n";
 		} while (rel_resid[0] >= monitor.tolerance() &&  monitor.iteration_count()+1 <= monitor.iteration_limit());
 	 	return 0;
 }
