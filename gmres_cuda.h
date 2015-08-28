@@ -25,13 +25,13 @@ extern "C" {
 
 // where to perform the computation
 typedef cusp::device_memory MemorySpace;
-
+typedef struct cusp::array1d<ValueType, MemorySpace> CudaVector;
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // ici travail à faire pour tunner le type des données via la commande d'execution //
 // which floating point type to use
-//typedef float ValueType;
-////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//typedef int IndexType;
+typedef float ValueType;
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+typedef int IndexType;
 
 
 // We define the type CudaMatrix which is in fact a csr_matrix class
@@ -58,8 +58,8 @@ int call_cusp_GMRES(CudaMatrix& A, CudaVector& x, CudaVector b, int restart);
 //
 int cusp_GMRES(int argc, char ** argv);
 
-
-
+int my_GMRES(cusp::csr_matrix<IndexType, ValueType, MemorySpace>& A, CudaVector& x, CudaVector& b, int restart, cusp::default_monitor<ValueType>& monitor);
+//	       Preconditioner& M)
 #ifdef __cplusplus
 }
 #endif
