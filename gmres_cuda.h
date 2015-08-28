@@ -10,6 +10,9 @@
 #include <cusp/csr_matrix.h>
 #include <cusp/monitor.h>
 #include <cusp/array1d.h>
+#include <cusp/blas.h>
+#include <cusp/multiply.h>
+#include <cusp/linear_operator.h>
 #include <iostream>  
 //#include <stdlib.h>	
 #include <vector> 
