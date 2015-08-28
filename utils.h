@@ -1,10 +1,6 @@
 #ifndef __UTILS_H
 #define __UTILS_H
 
-#ifdef __cplusplus
-extern "C"{
-#endif
-
 //#include <cusp/gallery/poisson.h>
 //#include <cusp/krylov/gmres.h>
 //#include <cusp/io/matrix_market.h>
@@ -16,6 +12,12 @@ extern "C"{
 #include <cusp/multiply.h>
 #include <cusp/linear_operator.h>
 #include <iostream> 
+
+
+#ifdef __cplusplus
+extern "C"{
+#endif
+
 
 // where to perform the computation
 typedef cusp::device_memory MemorySpace;
