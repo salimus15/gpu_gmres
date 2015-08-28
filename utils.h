@@ -22,7 +22,7 @@ extern "C"{
 // where to perform the computation
 typedef cusp::device_memory MemorySpace;
 typedef cusp::host_memory LocalSpace;
-
+typedef struct cusp::array1d<ValueType, MemorySpace> CudaVector;
 typedef float ValueType;
 typedef cusp::array1d<ValueType, cusp::host_memory> CuspArray;
 void rotationplan(ValueType& dx, ValueType& dy, ValueType& cs, ValueType& sn);
