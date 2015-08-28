@@ -105,26 +105,26 @@ int cusp_GMRES(int argc, char ** argv){
 int my_GMRES(CudaMatrix& A, CudaVector& x,  CudaVector& b, int restart, cusp::default_monitor<ValueType>& monitor)
 //	       Preconditioner& M)
 {
-//      typedef typename LinearOperator::value_type   ValueType;
-//      typedef typename LinearOperator::memory_space MemorySpace;
+      typedef typename LinearOperator::value_type   ValueType;
+      typedef typename LinearOperator::memory_space MemorySpace;
  //     typedef typename norm_type<ValueType>::type NormType;
       // here we check that it's a squar matrix
       assert(A.num_rows == A.num_cols);        // sanity check
-      std::cout << "test aasert passé \n ";
+//      std::cout << "test aasert passé \n ";
       const size_t N = A.num_rows;
-      std::cout << "1111\n";
+//      std::cout << "1111\n";
       const int R = restart;
       int i, j, k;
-      std::cout << " 2222\n";
+//      std::cout << " 2222\n";
       ValueType beta = 0;
       ValueType resid0 = 0;
       cusp::array1d<ValueType,cusp::host_memory> rel_resid(1);
-      std::cout << " 3333\n ";
+//      std::cout << " 3333\n ";
       //allocate workspace
       cusp::array1d<ValueType,MemorySpace> w(N);
-           std::cout << "3bis\n";
+//           std::cout << "3bis\n";
       cusp::array1d<ValueType,MemorySpace> V0(N); //Arnoldi matrix pos 0
-               std::cout << "3bisbis\n";
+//               std::cout << "3bisbis\n";
       cusp::array2d<ValueType,MemorySpace,cusp::column_major> V(N,R+1,ValueType(0.0)); //Arnoldi matrix
       
  		     std::cout << "4444\n";
