@@ -29,16 +29,16 @@ typedef cusp::device_memory MemorySpace;
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // ici travail à faire pour tunner le type des données via la commande d'execution //
 // which floating point type to use
-typedef float ValueType;
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-typedef int IndexType;
+//typedef float ValueType;
+////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//typedef int IndexType;
 
 
 // We define the type CudaMatrix which is in fact a csr_matrix class
 typedef struct cusp::csr_matrix<IndexType, ValueType, MemorySpace> CudaMatrix;
 
 // We define a CudaVector which is in fact an array1d class
-typedef struct cusp::array1d<ValueType, MemorySpace> CudaVector;
+//typedef struct cusp::array1d<ValueType, MemorySpace> CudaVector;
 
 
 

@@ -18,7 +18,9 @@
 extern "C"{
 #endif
 
-
+typedef float ValueType;
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+typedef int IndexType;
 // where to perform the computation
 typedef cusp::device_memory MemorySpace;
 typedef cusp::host_memory LocalSpace;
