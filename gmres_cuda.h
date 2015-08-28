@@ -16,6 +16,7 @@
 #include <iostream>  
 //#include <stdlib.h>	
 #include <vector> 
+#include "utils.h"
 
 #ifdef __cplusplus
 extern "C" {
