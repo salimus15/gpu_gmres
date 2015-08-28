@@ -110,7 +110,7 @@ int my_GMRES(CudaMatrix& A, CudaVector& x,  CudaVector& b, int restart, cusp::de
  //     typedef typename norm_type<ValueType>::type NormType;
       // here we check that it's a squar matrix
       assert(A.num_rows == A.num_cols);        // sanity check
-      std::cout "test aasert passé \n ";
+      std::cout << "test aasert passé \n ";
       const size_t N = A.num_rows;
       const int R = restart;
       int i, j, k;
