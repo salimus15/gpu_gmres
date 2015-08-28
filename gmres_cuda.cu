@@ -202,6 +202,7 @@ int my_GMRES(LinearOperator& A, Vector& x,  Vector& b, const size_t restart, Mon
 	}
       } while (rel_resid[0] >= monitor.tolerance() && 
 	       monitor.iteration_count()+1 <= monitor.iteration_limit());
-    }
-return 0;
+	  return 0;
+}
+
 }// for the extern 
