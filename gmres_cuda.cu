@@ -124,7 +124,7 @@ int my_GMRES(CudaMatrix& A, CudaVector& x,  CudaVector& b, int restart, cusp::de
       cusp::array1d<ValueType,MemorySpace> w(N);
 //           std::cout << "3bis\n";
       cusp::array1d<ValueType,MemorySpace> V0(N); //Arnoldi matrix pos 0
-/              std::cout << "3bisbis " << N << "  " << R;
+              std::cout << "3bisbis N =" << N << " R " << R << "\n";
       cusp::array2d<ValueType,cusp::device_memory,cusp::column_major> V(N,R+1,ValueType(0.0)); //Arnoldi matrix
       
  		     std::cout << "4444\n";
