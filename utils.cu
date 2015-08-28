@@ -1,7 +1,8 @@
 #include "utils.h"
 
 //    template <typename ValueType> 
-    void rotationplan(ValueType& dx, ValueType& dy, ValueType& cs, ValueType& sn)
+//    void rotationplan(ValueType& dx, ValueType& dy, ValueType& cs, ValueType& sn)
+void rotationplan(CuspArray& dx, CuspArray& dy, CuspArray& cs, CuspArray& sn)
     {
       ValueType temp = cs * dx + sn *dy;
       dy = -sn*dx+cs*dy;
@@ -9,7 +10,8 @@
     }
 
 //    template <typename ValueType>
-    void genererrotaionplan(ValueType& dx, ValueType& dy, ValueType& cs, ValueType& sn)
+//    void genererrotaionplan(ValueType& dx, ValueType& dy, ValueType& cs, ValueType& sn)
+void genererrotaionplan(CuspArray& dx, CuspArray& dy, CuspArray& cs, CuspArray& sn)
     {
       if(dy == ValueType(0.0)){
 			cs = 1.0;
@@ -26,12 +28,13 @@
     }
 
 //    template <class LinearOperator,typename ValueType> 
-    void applyrotationplan(cusp::csr_matrix<int, ValueType, MemorySpace>& H, ValueType& cs, ValueType& sn, ValueType& s, int i)
+//    void applyrotationplan(cusp::csr_matrix<int, ValueType, MemorySpace>& H, ValueType& cs, ValueType& sn, ValueType& s, int i)
+void applyrotationplan(cusp::array2d<ValueType, LocalSpace, cusp::column_major>& H, CuspArray& cs, CuspArray& sn, CuspArray& s, int i)
     {
       for (int k = 0; k < i; k++){
 			rotationplan(H(k,i), H(k+1,i), cs[k], sn[k]);
       }
-      GeneratePlaneRotation(H(i,i), H(i+1,i), cs[i], sn[i]);
+      genererrotaionplan(H(i,i), H(i+1,i), cs[i], sn[i]);
       rotationplan(H(i,i), H(i+1,i), cs[i], sn[i]);
       rotationplan(s[i], s[i+1], cs[i], sn[i]);
     }

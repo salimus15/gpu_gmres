@@ -11,6 +11,7 @@ extern "C"{
 #include <cusp/csr_matrix.h>
 //#include <cusp/monitor.h>
 //#include <cusp/array1d.h>
+#include <cusp/array2d.h>
 #include <cusp/blas.h>
 #include <cusp/multiply.h>
 #include <cusp/linear_operator.h>
@@ -18,15 +19,15 @@ extern "C"{
 
 // where to perform the computation
 typedef cusp::device_memory MemorySpace;
-
+typedef cusp::host_memory LocalSpace;
 
 typedef float ValueType;
+typedef cusp::array1d<ValueType, cusp::host_memory> CuspArray;
+void rotationplan(CuspArray& dx, CuspArray& dy, CuspArray& cs, CuspArray& sn);
 
-void rotationplan(ValueType& dx, ValueType& dy, ValueType& cs, ValueType& sn);
+void genererrotaionplan(CuspArray& dx, CuspArray& dy, CuspArray& cs, CuspArray& sn);
 
-void genererrotaionplan(ValueType& dx, ValueType& dy, ValueType& cs, ValueType& sn);
-
-void applyrotationplan(cusp::csr_matrix<int, ValueType, MemorySpace>& H, ValueType& cs, ValueType& sn, ValueType& s, int i);
+void applyrotationplan(cusp::array2d<ValueType, LocalSpace, cusp::column_major>& H, CuspArray& cs, CuspArray& sn, CuspArray& s, int i);
 
 
 #ifdef __cplusplus
