@@ -102,7 +102,7 @@ int cusp_GMRES(int argc, char ** argv){
 // cusp gmres modified. it runs on one gpu 
 // coming a version running on multiple gpu(s) i guess
 
-int my_GMRES(LinearOperator& A, Vector& x,  Vector& b, const size_t restart, Monitor& monitor)
+int my_GMRES(CudaMatrix& A, CudaVector& x,  CudaVector& b, int restart, Monitor& monitor)
 //	       Preconditioner& M)
 {
 //      typedef typename LinearOperator::value_type   ValueType;
