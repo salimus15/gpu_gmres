@@ -92,8 +92,8 @@ int cusp_GMRES(int argc, char ** argv){
 	std::cout << " vector x set to size of : " << x.size() << "\n";
 	std::cout << " vector b set to size of : " << b.size() << "\n";
 	cusp::default_monitor<ValueType> monitor(b, 100, 1e-6);
-//	call_cusp_GMRES( mtx, x, b, mGmres);
-	my_GMRES( mtx, x, b, 100, monitor );
+	call_cusp_GMRES( mtx, x, b, 100);
+//	my_GMRES( mtx, x, b, 100, monitor );
 	std::cout << " gmres solving done !!!\n";
 	return 0;
 }
