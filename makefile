@@ -24,4 +24,4 @@ blib:
 test:
 	g++ -c test_cuda.cpp -o test.o	
 exec:
-	g++ gmres.o test.o -o runit
+	nvcc gmres.o test.o -o runit
