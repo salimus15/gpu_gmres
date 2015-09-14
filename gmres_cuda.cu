@@ -1,5 +1,4 @@
 #include "gmres_cuda.h"
-extern "C" {
 
 // reading a matrix from a matrix market file 
 int read_Operator_A_mm(CudaMatrix& mtx, const std::string& filename){
@@ -193,4 +192,4 @@ int my_GMRES(CudaMatrix& A, CudaVector& x,  CudaVector& b, int restart, cusp::de
 	 	return 0;
 }
 
-}// for the extern 
+// for the extern 
