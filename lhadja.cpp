@@ -1,11 +1,11 @@
 #include "lhadja.h"
 
-inline void A::setValue(int value) // définition en dehors de la classe (inline)
+inline void ART::setValue(int valuer) // définition en dehors de la classe (inline)
 {
-    this->value = value;
+    value = valuer;
 }
 
-void A::print() const // définition en dehors de la classe (non inline)
+void ART::print() const // définition en dehors de la classe (non inline)
 {
-    std::cout << "Value=" << this->value << std::endl;
+    std::cout << "Value=" << value << std::endl;
 }
