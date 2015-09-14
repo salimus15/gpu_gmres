@@ -17,7 +17,7 @@
 #include <iostream>  
 //#include <stdlib.h>	
 #include <vector> 
-#include "utils.h"
+// #include "utils.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -58,7 +58,7 @@ int call_cusp_GMRES(CudaMatrix& A, CudaVector& x, CudaVector b, int restart);
 //
 int cusp_GMRES(std::string& filename, int& tolerance, int& mGmres);
 
-int my_GMRES(cusp::csr_matrix<IndexType, ValueType, MemorySpace>& A, CudaVector& x, CudaVector& b, int restart, cusp::default_monitor<ValueType>& monitor);
+// int my_GMRES(cusp::csr_matrix<IndexType, ValueType, MemorySpace>& A, CudaVector& x, CudaVector& b, int restart, cusp::default_monitor<ValueType>& monitor);
 //	       Preconditioner& M)
 #ifdef __cplusplus
 }
