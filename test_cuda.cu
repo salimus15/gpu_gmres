@@ -18,7 +18,8 @@ int main(int argc, char ** argv){
 		// we check if the matrix is contained in a matrix market file 
 		if (strcmp(argv[i], " --matrix-from-file") == 0){
 			// we get the name of the file from where to get the matrix 
-			filename.assign("./rdb968.mtx");
+			//filename.assign("./rdb968.mtx");
+			filename.assign(argv[i+1];
 		}
 	
 		// we check if tolerance was specified 

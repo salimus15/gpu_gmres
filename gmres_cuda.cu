@@ -62,7 +62,7 @@ int cusp_GMRES(std::string& filename, int& tolerance, int& mGmres){
 	std::cout << " Matrix read and has : " << mtx.num_rows << "rows " << mtx.num_cols << "cols " << mtx.num_entries << " entries \n";
 	std::cout << " vector x set to size of : " << x.size() << "\n";
 	std::cout << " vector b set to size of : " << b.size() << "\n";
-	cusp::default_monitor<ValueType> monitor(b, 100, 1e-6);
+	cusp::default_monitor<ValueType> monitor(b, mGmres, 1e-6);
 	call_cusp_GMRES( mtx, x, b, 100);
 //	my_GMRES( mtx, x, b, 100, monitor );
 	std::cout << " gmres solving done !!!\n";
