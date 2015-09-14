@@ -51,38 +51,12 @@ int call_cusp_GMRES(CudaMatrix& A, CudaVector& x, CudaVector b, int restart){
 
 
 //
-int cusp_GMRES(int argc, char ** argv){
-	int i;
-	std::string filename;
-	int tolerance, mGmres;
+int cusp_GMRES(std::string & filename, int & tolerance, int & mGmres){
+	
+        
 	
 	CudaMatrix mtx;
-	CudaVector x,b;
-
-	if(argc > 10){
-		printf("\nje sais pas trop !!!!");
-		return 1;
-	}
-		
-	for(i = 0; i < argc; ++i){
-		// we check if the matrix is contained in a matrix market file 
-		if (strcmp(argv[i], " --matrix-from-file") == 0){
-			// we get the name of the file from where to get the matrix 
-			filename.assign("./rdb968.mtx");
-		}
-	
-		// we check if tolerance was specified 
-		if (strcmp(argv[i], " --tolerance") == 0){
-			// we get the value of the tolerance 
-			tolerance = atoi(argv[i+1]);
-		}
-	
-		// we check if number of iterations was specified
-		if (strcmp(argv[i], " --restart") == 0){
-			// we get the number of iterations before a restart 
-			mGmres = atoi(argv[i+1]);
-		}
-	}
+	CudaVector x,b;	
 	
 	//read_Operator_A_mm(mtx, filename);
 	initialize_problem(mtx, filename, b, x, mGmres, tolerance);
@@ -95,6 +69,8 @@ int cusp_GMRES(int argc, char ** argv){
 	call_cusp_GMRES( mtx, x, b, 100);
 //	my_GMRES( mtx, x, b, 100, monitor );
 	std::cout << " gmres solving done !!!\n";
+
+
 	return 0;
 }
 
