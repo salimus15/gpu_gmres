@@ -1,13 +1,17 @@
 
 #include <iostream>
 #include "gmres_cuda.h"
-
+#include "lhadja.h"
 using namespace std;
 
 int main(int argc, char ** argv){
         int i;
 	std::string filename;
 	int tolerance, mGmres;
+	
+	ART sts;
+	sts.setValue(200);
+	sts.print();
 	
 	if(argc > 10){
 		printf("\nje sais pas trop !!!!");
