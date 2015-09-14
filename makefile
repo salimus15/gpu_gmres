@@ -20,7 +20,8 @@ ARCH = -arch=sm_35
 
 blib:
 #    nvcc $(DEB) -c $(CC) -lm -I${CUDAINCADD} -I$(CUSP) -I$(SPMV) -I$(THRUST) -lcusparse -I./ gmres_cuda.cu
-	nvcc -c -I{CUDAINCADD} -I${CUSP} -I ./ gmres_cuda.cu
+	nvcc -c -I{CUDAINCADD} -I${CUSP} -I ./ gmres_cuda.cu -o gmres.o
 test:
-	gcc -c test.c -o test.o	
+	g++ -c test_cuda.cpp -o test.o	
 exec:
+	g++ gmres.o test.o -o runit
