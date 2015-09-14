@@ -56,7 +56,7 @@ int initialize_problem(CudaMatrix& mtx, const std::string& filename, CudaVector&
 int call_cusp_GMRES(CudaMatrix& A, CudaVector& x, CudaVector b, int restart);
 
 //
-int cusp_GMRES(CudaMatrix& mtx, const std::string& filename, CudaVector& b, CudaVector& x, int& mGmres, int& tolerance);
+int cusp_GMRES(std::string& filename, int& tolerance, int& mGmres);
 
 int my_GMRES(cusp::csr_matrix<IndexType, ValueType, MemorySpace>& A, CudaVector& x, CudaVector& b, int restart, cusp::default_monitor<ValueType>& monitor);
 //	       Preconditioner& M)
