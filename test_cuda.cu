@@ -19,7 +19,7 @@ int main(int argc, char ** argv){
 		if (strcmp(argv[i], " --matrix-from-file") == 0){
 			// we get the name of the file from where to get the matrix 
 			//filename.assign("./rdb968.mtx");
-			filename.assign(argv[i+1];
+			filename.assign(argv[i+1]);
 		}
 	
 		// we check if tolerance was specified 
