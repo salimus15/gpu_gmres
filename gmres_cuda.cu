@@ -51,9 +51,7 @@ int call_cusp_GMRES(CudaMatrix& A, CudaVector& x, CudaVector b, int restart){
 
 
 //
-int cusp_GMRES(std::string & filename, int & tolerance, int & mGmres){
-	
-        
+int cusp_GMRES(std::string& filename, int& tolerance, int& mGmres){
 	
 	CudaMatrix mtx;
 	CudaVector x,b;	
